@@ -1,0 +1,57 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SHARETHOUGHTS</title>
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Saira+Stencil+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+     <link rel="stylesheet" href="{% static 'config/css/blog.css' %}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1> <span style="color: black; ">SHARE</span>THOUGHTS</h1> 
+            
+            <nav>
+                <table>
+                    <tr>
+                        <td><i class="fas fa-home"></i> Home</td>
+                        <td><i class="fas fa-plus-circle"></i> Create</td>
+                        <td><i class="fas fa-user"></i> Profile</td>
+                        <td><i class="fas fa-search"></i> Search</td>
+                        <td><i class="fas fa-sign-out-alt"></i> Logout</td>
+                    </tr>
+                </table>
+            </nav>
+            
+            <div class="blogs-header">
+                <i class="fas fa-blog"></i> Blogs
+            </div>
+        </header>
+        
+        <main>
+            {%for i in object_list%}
+            <div class="blog-card">
+                <h2>{{i.heading}}</h2>
+                <span>@{{i.owner.username}}</span>
+                <p>{{i.created_at}}</p>
+                <img src={{i.image}} alt="">
+                <p>{{i.description}}</p>
+            </div>
+            
+            <div class="separator"></div>
+            
+            {%endfor%}
+            
+        </main>
+        
+        <div class="footer">
+            <p>© 2023 SHARETHOUGHTS. All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,108 @@
+* {
+    box-sizing: border-box;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+        
+        body {
+            background-color: #f0f2f5;
+            color: #1c1e21;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        header {
+            font-family: "Saira Stencil One", sans-serif;
+            margin-bottom: 25px;
+        }
+        
+        h1 {
+            font-size: 32px;
+            font-weight: 400;
+            color: #004aad;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        nav {
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        nav table {
+            width: 100%;
+        }
+        
+        nav td {
+            padding: 16px 0;
+            text-align: center;
+            font-weight: 500;
+            font-size: 16px;
+            color: #4b4f56;
+            transition: background-color 0.2s;
+        }
+        
+        nav td:last-child {
+            border-right: none;
+        }
+        
+        nav td:hover {
+            background-color: #f5f7fa;
+            cursor: pointer;
+        }
+        
+        .blogs-header {
+            background-color: #ffffff;
+            padding: 16px 20px;
+            font-weight: 700;
+            font-size: 18px;
+            border-bottom: 1px solid #e4e6eb;
+            border-radius: 8px 8px 0 0;
+            margin-top: 20px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .blog-card {
+            background-color: #ffffff;
+            padding: 25px;
+            margin-bottom: 2px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .blog-card:last-child {
+            border-radius: 0 0 8px 8px;
+        }
+        
+        .blog-card h2 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #1d2129;
+        }
+        
+        .blog-card p {
+            font-size: 16px;
+            color: #4b4f56;
+            line-height: 1.7;
+        }
+        
+        .separator {
+            height: 1px;
+            background-color: #e4e6eb;
+            margin: 0;
+            border: none;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px;
+            color: #8a8d91;
+            font-size: 14px;
+        }
