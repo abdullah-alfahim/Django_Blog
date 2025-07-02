@@ -7,3 +7,6 @@ from .models import Blog
 
 class HomeView(ListView):
     model = Blog
+    context_object_name = 'blogs'
+
+    

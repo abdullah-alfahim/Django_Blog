@@ -9,9 +9,9 @@ class Blog(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='blog')
     heading = models.CharField(max_length=50)
     keywords = models.CharField(max_length=50)
-    image = models.ImageField(upload_to='blog', blank=True, null=True)
+    image = models.ImageField( blank=True, null=True)
     description = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.owner.username + " | " + self.heading
+        return self.owner.username + " | " + self.heading 
