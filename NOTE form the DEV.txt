@@ -1,0 +1,6 @@
+Hi, thanks for reviewing this. It is my very first Django long project, i made all the work, alone, but i got helped from the AI, for debugging and for the 
+desigen. 
+
+I know, it's kinda odd to desigen app in Canva, but at this moment, that is what i have.
+Desigen Blueprint: 
+https://www.canva.com/design/DAGrk7aMNqg/y4bAAwTdg5mHjytVxR3nKA/edit?utm_content=DAGrk7aMNqg&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
