@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Share Thoughts - Create Post</title>
+    {% load static %}
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            color: #333;
+        }
+
+        header {
+            background-color: #004085;
+            color: white;
+            padding: 15px 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo-text {
+            font-size: 2em;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: white;
+            margin: 0;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        nav ul li {
+            margin-left: 25px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #a0c0e0;
+        }
+
+        .search-container {
+            display: flex;
+            align-items: center;
+            background-color: #fff;
+            border-radius: 5px;
+            padding: 5px 10px;
+        }
+
+        .search-container input {
+            border: none;
+            outline: none;
+            padding: 5px;
+            font-size: 0.9em;
+            border-radius: 3px;
+        }
+
+        .search-container button {
+            background: none;
+            border: none;
+            color: #004085;
+            cursor: pointer;
+            padding: 5px;
+            font-size: 1.1em;
+        }
+
+        main {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 40px 20px;
+            box-sizing: border-box;
+        }
+
+        .post-container {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+            box-sizing: border-box;
+        }
+
+        .post-container h2 {
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 1.8em;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #555;
+            font-size: 0.9em;
+        }
+
+        .form-group input[type="text"],
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 1em;
+            outline: none;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .form-group input[type="file"] {
+            padding: 10px 0;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 0 0.15rem rgba(0, 123, 255, 0.25);
+        }
+
+        .errorlist {
+            color: #dc3545;
+            list-style-type: none;
+            padding: 0;
+            margin-top: 5px;
+            font-size: 0.85em;
+        }
+
+        .form-errors {
+            color: #dc3545;
+            background-color: #f8d7da;
+            border: 1px solid #f5c6cb;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .btn-post {
+            background-color: #007bff;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            float: right;
+            margin-top: 20px;
+        }
+
+        .btn-post:hover {
+            background-color: #0056b3;
+        }
+
+        footer {
+            background-color: #004085;
+            color: white;
+            text-align: center;
+            padding: 15px 0;
+            font-size: 0.9em;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+            margin-top: auto;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                padding-bottom: 10px;
+            }
+            nav ul {
+                margin-top: 15px;
+                justify-content: center;
+                width: 100%;
+            }
+            nav ul li {
+                margin: 0 10px;
+            }
+            .search-container {
+                margin-top: 15px;
+                width: 90%;
+            }
+            .post-container {
+                padding: 25px;
+                margin: 0 15px;
+            }
+            .post-container h2 {
+                font-size: 1.5em;
+            }
+            .btn-post {
+                float: none;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1 class="logo-text">SHARE THOUGHTS</h1>
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'create' %}">Create</a></li> {# Changed URL name from 'create-blog' to 'create' #}
+                <li><a href="">Profile</a></li>
+                <li>
+                    <div class="search-container">
+                        <input type="text" placeholder="Search">
+                        <button type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></button>
+                    </div>
+                </li> 
+                <li>
+                   <form action="{% url 'logout' %}" method="post">
+                     {% csrf_token %}
+                        <button  type="submit"><i class="fas fa-sign-out-alt"></i> Log Out</button>
+                    </form> 
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="post-container">
+            <h2>Create Post</h2>
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                {% if form.non_field_errors %}
+                    <div class="form-errors">
+                        {% for error in form.non_field_errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
+                <div class="form-group">
+                    <label for="{{ form.heading.id_for_label }}">Heading</label>
+                    <input
+                        type="text"
+                        name="{{ form.heading.name }}"
+                        id="{{ form.heading.id_for_label }}"
+                        placeholder="Heading"
+                        {% if form.heading.value %}value="{{ form.heading.value }}"{% endif %}
+                        {% if form.heading.field.required %}required{% endif %}
+                    >
+                    {% if form.heading.errors %}
+                        <ul class="errorlist">
+                            {% for error in form.heading.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    <label for="{{ form.keywords.id_for_label }}">Keywords</label>
+                    <input
+                        type="text"
+                        name="{{ form.keywords.name }}"
+                        id="{{ form.keywords.id_for_label }}"
+                        placeholder="Keywords"
+                        {% if form.keywords.value %}value="{{ form.keywords.value }}"{% endif %}
+                        {% if form.keywords.field.required %}required{% endif %}
+                    >
+                    {% if form.keywords.errors %}
+                        <ul class="errorlist">
+                            {% for error in form.keywords.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    <label for="{{ form.image.id_for_label }}">Add Photo here:</label>
+                    <input
+                        type="file"
+                        name="{{ form.image.name }}"
+                        id="{{ form.image.id_for_label }}"
+                        {% if form.image.field.required %}required{% endif %}
+                    >
+                    {% if form.image.errors %}
+                        <ul class="errorlist">
+                            {% for error in form.image.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    <label for="{{ form.description.id_for_label }}">Description</label>
+                    <textarea
+                        name="{{ form.description.name }}"
+                        id="{{ form.description.id_for_label }}"
+                        placeholder="Description"
+                        {% if form.description.field.required %}required{% endif %}
+                    >{% if form.description.value %}{{ form.description.value }}{% endif %}</textarea>
+                    {% if form.description.errors %}
+                        <ul class="errorlist">
+                            {% for error in form.description.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+
+                <button type="submit" class="btn-post">Post</button>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <p>All right reserved by ShareThughts</p>
+    </footer>
+</body>
+</html>

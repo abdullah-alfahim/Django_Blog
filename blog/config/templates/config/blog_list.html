@@ -13,21 +13,22 @@
     <link href="https://fonts.googleapis.com/css2?family=Saira+Stencil+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 
 
 
-* {
-    box-sizing: border-box;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-     font-family: "Poppins", sans-serif;
-}
+        * {
+            box-sizing: border-box;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            font-family: "Poppins", sans-serif;
+            
+        }
         
         body {
 
@@ -169,7 +170,7 @@
                 <table>
                     <tr>
                         <td class="active"><i class="fas fa-home"></i> Home</td>
-                        <td><i class="fas fa-plus-circle"></i> Create</td>
+                        <td><a href="{% url 'create' %}"><i class="fas fa-plus-circle"></i> Create</a></td>
                         <td><i class="fas fa-user"></i> Profile</td>
                         <td><i class="fas fa-search"></i> Search</td>
                         <td>
@@ -197,7 +198,11 @@
                 <h2><u>{{i.heading}}</u></h2>
                 <i>@{{i.owner.username}}</i> <br>
                 <i>{{i.created_at}}</i> <br> <br> <br>
-                <img src="{{i.image.url}}" alt="img"> <br>
+                {% if i.image %} {# Check if an image exists for this blog post #}
+                    <img src="{{ i.image.url }}" alt="{{ i.heading }} image">
+                {% else %}
+                    <img src="https://placehold.co/600x400/cccccc/000000?text=No+Image" alt="No Image Available">
+                {% endif %} <br>
                 <p>{{i.description}}</p>
             </div>
             
