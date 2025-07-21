@@ -171,7 +171,7 @@
                     <tr>
                         <td class="active"><i class="fas fa-home"></i> Home</td>
                         <td><a href="{% url 'create' %}"><i class="fas fa-plus-circle"></i> Create</a></td>
-                        <td><i class="fas fa-user"></i> Profile</td>
+                        <td><a href="{% url 'profile' %}"><i class="fas fa-user"></i> Edit</a></td>
                         <td><i class="fas fa-search"></i> Search</td>
                         <td>
                             <form action="{% url 'logout' %}" method="post">
