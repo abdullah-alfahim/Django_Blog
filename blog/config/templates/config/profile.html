@@ -188,16 +188,28 @@
 
 
             <div class="blogs-header">
-                <i class="fas fa-blog"></i> Blogs
+                {% for i in blogs %}
+                    {% if forloop.last %}
+                        you are logged in as {{ i.owner.username }} and have made total of {{ forloop.counter }} blogs
+                    {% endif %}
+                {% endfor %}
             </div>
         </header>
         
         <main>
+            <div>
+                
+            </div>
             {%for i in blogs %}
             <div class="blog-card">
                 <h2><u>{{i.heading}}</u></h2>
                 <i>@{{i.owner.username}}</i> <br>
-                <i>{{i.created_at}}</i> <br> <br> <br>
+                <i>{{i.created_at}}</i> <br>
+                <div class="profile_buttons">
+                    <a href="{% url 'update' i.pk %}">Update</a>
+                    <a href="{% url 'delete' i.pk %}">Delete</a>
+                </div>  
+                <br> <br>
                 {% if i.image %} {# Check if an image exists for this blog post #}
                     <img src="{{ i.image.url }}" alt="{{ i.heading }} image">
                 {% else %}
